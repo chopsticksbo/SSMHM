@@ -1,7 +1,7 @@
 package com.itheima.entity;
 
 public class Book {
-    private int id;
+    private Integer id;
     private String name;
     private double price;
 
@@ -13,11 +13,11 @@ public class Book {
         this.price = price;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
