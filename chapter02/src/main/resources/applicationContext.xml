@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--  <bean id="user" class="com.itheima.pojo.UserDao"></bean>-->
+
+    <!--    &lt;!&ndash;构造方法实例化Bean&ndash;&gt;
+    <bean id="user" class="com.itheima.pojo.UserDao">
+            <constructor-arg name="id" value="1"/>
+            <constructor-arg name="name" value="张三"/>
+        </bean>-->
+
+    <!--
+        &lt;!&ndash;静态工厂实例化Bean&ndash;&gt;
+        <bean id="user" class="com.itheima.factory.UserStaticFactory" factory-method="createUser"></bean>
+    -->
+<!--
+    &lt;!&ndash;    实例工厂实例化Bean&ndash;&gt;
+    <bean id="userInstanceFactory"
+          class="com.itheima.factory.UserInstanceFactory"></bean>
+    <bean id="user" factory-bean="userInstanceFactory"
+          factory-method="createUser"></bean>-->
+<!--
+    &lt;!&ndash;setter方法注入&ndash;&gt;
+    <bean id="userDao" class="com.itheima.dao.UserDao"></bean>
+    <bean id="userService" class="com.itheima.service.UserService">
+        <property name="userDao" ref="userDao"></property>
+    </bean>-->
+
+
+    <bean id="userDaoImpl" class="com.itheima.dao.UserDaoImpl"></bean>
+<!--    <bean id="userService" class="com.itheima.service.UserService">-->
+<!--        <constructor-arg name="userDao" ref="userDaoImpl"></constructor-arg>-->
+<!--        <property name="userDao" ref="userDaoImpl"></property>-->
+<!--    </bean>-->
+    <bean id="userService" class="com.itheima.service.UserService">
+    <property name="userDaoImpl" ref="userDaoImpl"></property>
+</bean>
+
+    <bean id="student" class="com.itheima.bean.Student">
+        <property name="username" value="张三"/>
+        <property name="age" value="18"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <bean id="student1" class="com.itheima.bean.Student">
+        <property name="username" value="张三"/>
+        <property name="age" value="18"/>
+        <property name="password" value="123456"/>
+<!--        复杂类型，自定义类-->
+        <property name="studentClass" ref="studentClass"/>
+    </bean>
+    <bean id="studentClass" class="com.itheima.bean.StudentClass">
+        <property name="className" value="JavaSE"/>
+        <property name="classNum" value="202301"/>
+    </bean>
+
+
+    <bean id="sampleTypes" class="com.itheima.bean.SampleTypes">
+        <property name="age" value="18"/>
+        <property name="name" value="张三"/>
+        <property name="flag" value="true"/>
+        <property name="sex" value="M"/>
+        <property name="salary" value="10000.0"/>
+<!--        <property name="clazz" value="java.lang.String"/>-->
+        <property name="clazz" value="com.itheima.bean.Student"/>
+        <property name="season" value="SPRING"/>
+<!--        不能直接注入Date类型，需要使用DateUtils类转换-->
+<!--        <property name="birthDate" value="2000-01-01"/>-->
+<!--        以下这种格式记忆比较麻烦，一般不会写成这个样子，而是把日期当成复杂数据类型，使用ref注入-->
+        <property name="birthDate" value="Mon Mar 30 09:49:45 CST 2026"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="注入Map和Properties" class="com.itheima.Egg02其他注入方法.bean.注入Map和Properties">
+        <property name="names">
+            <list>
+                <value>张三</value>
+                <value>李四</value>
+                <value>王五</value>
+            </list>
+        </property>
+        <property name="addresses">
+            <set>
+                <value>北京</value>
+                <value>上海</value>
+                <value>广州</value>
+            </set>
+        </property>
+        <property name="phones">
+        <map>
+<!--            key和value是非简单类型时，需要使用ref属性引用 -->
+            <entry key="张三" value="13800000000"/>
+            <entry key="李四" value="13900000000"/>
+            <entry key="王五" value="13700000000"/>
+        </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="age">18</prop>
+                <prop key="gender">男</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

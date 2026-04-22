@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="teacher" class="com.itheima.bean.ArrayDITeacher">
+<!--        <property name="aiHaos" value="抽烟, 喝酒, 睡觉"/>-->
+        <property name="aiHaos">
+            <array>
+                <value>抽烟</value>
+                <value>喝酒</value>
+                <value>睡觉</value>
+            </array>
+        </property>
+<!--        <property name="friends" ref="friend1 friend2 friend3"/>-->
+        <property name="friends">
+            <array>
+                <ref bean="friend1"/>
+                <ref bean="friend2"/>
+                <ref bean="friend3"/>
+            </array>
+        </property>
+    </bean>
+    <bean id="friend1" class="com.itheima.bean.Friends">
+        <property name="name" value="张三"/>
+        <property name="age" value="18"/>
+    </bean>
+    <bean id="friend2" class="com.itheima.bean.Friends">
+        <property name="name" value="李四"/>
+        <property name="age" value="19"/>
+    </bean>
+    <bean id="friend3" class="com.itheima.bean.Friends">
+        <property name="name" value="王五"/>
+        <property name="age" value="20"/>
+    </bean>
+
+    <bean id="person" class="com.itheima.bean.Person">
+        <property name="names">
+            <array>
+                <value>张三</value>
+                <value>李四</value>
+                <value>王五</value>
+            </array>
+        </property>
+        <property name="addresses">
+            <set>
+                <value>北京</value>
+                <value>上海</value>
+                <value>广州</value>
+                <value>广州</value>
+            </set>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    在上方加入AOP的依赖-->
+<!--    扫描组件-->
+    <context:component-scan base-package="com.itheima.Egg04AnnotationExample.bean" />
+<!--    多包扫描，只需要将上一行所扫描的包后面加一个逗号，再扫描service包-->
+<!--    <context:component-scan base-package="com.itheima.Egg04AnnotationExample.bean,-->
+<!--    com.itheima.Egg04AnnotationExample.service" />-->
+<!--    多个包可以直接指定他的父包，会牺牲扫描效率，一般不推荐-->
+<!--    <context:component-scan base-package="com.itheima.Egg04AnnotationExample" />-->
+
+<!--    bean下所有Bean组件不生效-->
+<!--    <context:component-scan base-package="com.itheima.Egg04AnnotationExample.bean" use-default-filters="false"/>-->
+
+    <context:component-scan base-package="com.itheima.Egg04AnnotationExample.service" use-default-filters="false">
+<!--        选择性的扫描组件,只扫描@Component注解的组件-->
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />-->
+        <!--        选择性的扫描组件,只扫描@Controller注解的组件-->
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
+<!--        &lt;!&ndash;        选择性的扫描组件,只扫描@Service注解的组件&ndash;&gt;-->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+<!--        &lt;!&ndash;        选择性的扫描组件,只扫描@Repository注解的组件&ndash;&gt;-->
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />-->
+<!--&lt;!&ndash;        排除@Component注解的组件&ndash;&gt;-->
+<!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Component" />-->
+    </context:component-scan>
+
+
+<!--    <bean id="teacher" class="com.itheima.Egg04AnnotationExample.bean.Teacher" />-->
+
+
+<!--    选择性的扫描组件-->
+</beans>

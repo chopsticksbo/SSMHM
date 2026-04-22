@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="orderService" class="com.itheima.Egg01构造注入.service.OrderService">
+<!--        方式1,根据索引位置注入,index打乱也可以正常注入-->
+<!--        <constructor-arg index="0" ref="orderDao"/>-->
+<!--        <constructor-arg index="1" ref="userDao"/>-->
+<!--        方式2-->
+<!--        <constructor-arg name="orderDao" ref="orderDao"/>-->
+<!--        <constructor-arg name="userDao" ref="userDao"/>-->
+<!--        方式3-->
+        <constructor-arg ref="orderDao"/>
+        <constructor-arg ref="userDao"/>
+    </bean>
+
+    <bean name="orderDao" class="com.itheima.Egg01构造注入.dao.OrderDao"/>
+    <bean name="userDao" class="com.itheima.Egg01构造注入.dao.UserDao"/>
+
+    <bean name="student" class="com.itheima.bean.Student">
+        <property name="username" value="张三"/>
+        <property name="age" value="18"/>
+        <property name="password" value="123456"/>
+        <property name="studentClass" ref="studentClass"/>
+    </bean>
+    <bean name="studentClass" class="com.itheima.bean.StudentClass">
+        <property name="className" value="JavaSE"/>
+        <property name="classNum" value="1001"/>
+    </bean>
+</beans>

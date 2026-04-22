@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="person" class="com.itheima.bean.Person">
+            <property name="names">
+<!--                list 集合有序, 可以重复, 可以嵌套-->
+                <list>
+                    <value>张三</value>
+                    <value>李四</value>
+                    <value>王五</value>
+                    <value>王五</value>
+                    <value>王五</value>
+                </list>
+            </property>
+            <property name="addresses">
+<!--                set 集合无序, 不能重复, 可以嵌套-->
+                <set>
+                    <value>北京</value>
+                    <value>上海</value>
+                    <value>广州</value>
+                    <value>广州</value>
+                </set>
+            </property>
+    </bean>
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    setter注入 -->
+    <!-- 1. 定义UserDao实例 -->
+    <bean id="userDao" class="com.itheima.Egg08WiredFunc.dao.UserDao"/>
+
+    <!-- 2. 定义UserService实例 -->
+    <bean id="userService" class="com.itheima.Egg08WiredFunc.Service.UserService">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+<!--    构造函数注入-->
+<!--    <bean id="userDao" class="com.itheima.Egg08WiredFunc.dao.UserDao"/>-->
+<!--    <bean id="userService2" class="com.itheima.Egg08WiredFunc.Service.UserService2">-->
+<!--        <constructor-arg name="userDao" ref="userDao"/>-->
+<!--    </bean>-->
+</beans>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.Example.mapper.UserMapper">
+    <!--    查询所有用户信息 -->
+    <select id="selectAll" resultType="com.itheima.Example.entity.User">
+        select * from user
+    </select>
+
+<!--    根据ID查询单条用户信息 -->
+    <select id="findById" parameterType="int" resultType="com.itheima.Example.entity.User">
+        select * from user where id = #{id}
+    </select>
+    <!--    根据ID查询多条用户信息 -->
+    <select id="findByIds" parameterType="java.util.List" resultType="com.itheima.Example.entity.User">
+        select * from user where id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+<!--    插入单条数据 -->
+    <insert id="insert" parameterType="com.itheima.Example.entity.User">
+        insert into user (username) values (#{username})
+    </insert>
+<!--    插入多条数据 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into user (username) values
+        <foreach collection="list" item="user" separator=",">
+            (#{user.username})
+        </foreach>
+    </insert>
+<!--    删除单条数据 -->
+    <delete id="delete" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+    <!-- 添加批量删除操作 -->
+    <delete id="deleteBatch" parameterType="int[]">
+        delete from user where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+<!--    修改单条数据 -->
+    <update id="update" parameterType="com.itheima.Example.entity.User">
+        update user set username = #{username} where id = #{id}
+    </update>
+<!--    修改多条数据 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        update user set username =
+        <foreach collection="list" item="user" separator=" " open="case id" close="end">
+            when #{user.id} then #{user.username}
+        </foreach>
+        where id in
+        <foreach collection="list" item="user" separator="," open="(" close=")">
+            #{user.id}
+        </foreach>
+    </update>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--        <bean id="user" class="com.itheima.Egg07ConstructorFunc.bean.User">-->
+<!--            <constructor-arg value="1001"/>-->
+<!--            <constructor-arg value="张三"/>-->
+<!--        </bean>-->
+
+<!--    静态工厂模式 -->
+<!--    factory-method="createUser"意思是调用UserStaticFactory类的createUser方法创建User实例-->
+<!--    <bean id="user" class="com.itheima.Egg07ConstructorFunc.bean.UserStaticFactory" factory-method="createUser">-->
+<!--        <constructor-arg value="1001"/>-->
+<!--        <constructor-arg value="张三"/>-->
+<!--    </bean>-->
+
+<!--    实例工厂模式 -->
+    <!-- 1. 先定义工厂实例 -->
+    <bean id="userInstanceFactory" class="com.itheima.Egg07ConstructorFunc.bean.UserInstanceFactory"/>
+
+    <!-- 2. 使用工厂实例创建User对象 -->
+    <bean id="user" factory-bean="userInstanceFactory" factory-method="createUser"/>
+
+
+</beans>

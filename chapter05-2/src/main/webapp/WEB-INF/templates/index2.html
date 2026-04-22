@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index2</title>
+</head>
+<body>
+    <h1>Index2</h1>
+<a th:href="@{/product}">Product</a>
+<a th:href="@{/user}">User</a>
+    <a th:href="@{/test}">Test</a>
+
+    <form th:action="@{/test3}" method="post">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
+
+<a th:href="@{/test4param(username='admin',password='123456')}">Test4param</a>
+
+</body>
+</html>
