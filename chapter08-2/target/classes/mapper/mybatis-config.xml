@@ -2,17 +2,19 @@
 <!DOCTYPE configuration SYSTEM "mybatis-3-config.dtd">
 
 <configuration>
-    <properties>
-        <property name="db.driver" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="db.url" value="jdbc:mysql://localhost:3306/mybatis"/>
-        <property name="db.username" value="root"/>
-        <property name="db.password" value="Xu990515@"/>
-    </properties>
+<!--    <properties>-->
+<!--        <property name="db.driver" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--        <property name="db.url" value="jdbc:mysql://localhost:3306/mybatis"/>-->
+<!--        <property name="db.url2" value="jdbc:mysql://localhost:3306/laodu_jdbc"/>-->
+<!--        <property name="db.username" value="root"/>-->
+<!--        <property name="db.password" value="Xu990515@"/>-->
+<!--    </properties>-->
+    <properties resource="jdbc.properties"/>
 
     <settings>
-<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
 <!--        关闭日志记录 -->
-                <setting name="logImpl" value="NO_LOGGING"/>
+<!--                <setting name="logImpl" value="NO_LOGGING"/>-->
 <!--        log4j2需要引入依赖-->
 <!--        <setting name="logImpl" value="LOG4J2"/>-->
 <!--        <setting name="logImpl" value="SLF4J"/>-->
@@ -28,13 +30,22 @@
                 <property name="url" value="${db.url}"/>
                 <property name="username" value="${db.username}"/>
                 <property name="password" value="${db.password}"/>
+                <!--                数据库连接池配置 -->
+                <!--                连接池最大连接数 -->
+<!--                <property name="poolMaximumSize" value="10"/>-->
+                <!--                连接池最小空闲时间 -->
+<!--                <property name="poolMinimumIdleTime" value="30000"/>-->
+                <!--                连接池最大空闲时间 -->
+<!--                <property name="poolMaximumIdleTime" value="60000"/>-->
+                <!--                连接池Ping间隔 -->
+<!--                <property name="poolPingInterval" value="30000"/>-->
             </dataSource>
         </environment>
         <environment id="laodujdbc">
             <transactionManager type="JDBC"></transactionManager>
-            <dataSource type="POOLED">
+            <dataSource type="UNPOOLED">
                 <property name="driver" value="${db.driver}"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/laodu_jdbc"/>
+                <property name="url" value="${db.url2}"/>
                 <property name="username" value="${db.username}"/>
                 <property name="password" value="${db.password}"/>
             </dataSource>
