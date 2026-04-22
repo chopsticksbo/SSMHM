@@ -19,4 +19,32 @@
         </if>
     </select>
 
+    <select id="findBooksWithSort" parameterType="string" resultType="com.itheima.entity.Book">
+        select * from book order by
+        <choose>
+            <when test="sortType == 'name'">
+                name
+            </when>
+            <when test="sortType == 'price'">
+                price
+            </when>
+            <otherwise>
+                id
+            </otherwise>
+        </choose>
+        <if test="sortOrder != null and sortOrder == 'desc'">
+            desc
+        </if>
+        <if test="sortOrder == null or sortOrder != 'desc'">
+            asc
+        </if>
+    </select>
+
+    <select id="findBooksByIds" resultType="com.itheima.entity.Book">
+        select * from book where id in
+                           <foreach item="id" collection="array" open="(" separator="," close=")">
+                               #{id}
+                           </foreach>
+    </select>
+
 </mapper>

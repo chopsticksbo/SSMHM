@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BookTest {
     private SqlSession createSqlSession() {
@@ -59,5 +62,27 @@ public class BookTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testFindBooksWithSort() {
+        SqlSession sqlSession = createSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        String sortType = "name";
+        List<Book> books = bookMapper.findBooksWithSort(sortType);
+        books.forEach(System.out::println);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testFindBooksByIds() {
+        SqlSession sqlSession = createSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        Integer[] arr = {1, 2,3};
+        List<Book> books = bookMapper.findBooksByIds(arr);
+        for(Book book : books) {
+            System.out.println(book);
+        }
+        sqlSession.close();
     }
 }
