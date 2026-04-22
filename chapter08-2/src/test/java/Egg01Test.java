@@ -25,6 +25,7 @@ public class Egg01Test {
             //            调用sqlSession对象的selectOne()方法,执行查询操作句
             User result = sqlSession.selectOne("com.itheima.Example.mapper.UserMapper.findById", 1);
             System.out.println(result);
+            System.out.println("hhhhh");
             //            关闭会话对象
             sqlSession.close();
 
