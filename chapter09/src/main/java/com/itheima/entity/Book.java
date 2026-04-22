@@ -3,7 +3,7 @@ package com.itheima.entity;
 public class Book {
     private Integer id;
     private String name;
-    private double price;
+    private Double price;
 
     public Book() {
     }
@@ -33,7 +33,7 @@ public class Book {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
