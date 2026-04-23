@@ -40,7 +40,7 @@ public class MapperTest {
         CourseMapper courseMapper = session.getMapper(CourseMapper.class);
         //查询课程信息
         Course course = courseMapper.findById(2);
-        System.out.println("----------课程对应的学生信息--------------");
+        System.out.println("----------课程对应的学生信息---------------------");
         System.out.println(course);
     }
 }
