@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.MemberMapper">
+    <!-- 查询会员信息，包含对应的订单信息 -->
+    <select id="getMemberWithOrders" resultMap="memberResultMap">
+        SELECT id, name FROM `member`  WHERE id = #{id}
+    </select>
+    <resultMap id="memberResultMap" type="com.itheima.entity.Member">
+        <!-- 主键映射 -->
+        <id property="id" column="id"/>
+        <!-- 普通字段映射 -->
+        <result property="name" column="name"/>
+        <!-- 集合属性映射 -->
+        <collection property="orders" ofType="com.itheima.entity.Order"
+                    select="selectOrdersByMemberId" column="id"/>
+    </resultMap>
+    <!-- 查询订单信息 -->
+    <select id="selectOrdersByMemberId" resultMap="orderResultMap">
+        SELECT id, memberId, orderNumber  FROM `order`
+        WHERE memberId = #{memberId}
+    </select>
+    <!-- 定义resultMap -->
+    <resultMap id="orderResultMap" type="com.itheima.entity.Order">
+        <id property="id" column="id"/>
+        <result property="memberId" column="memberId"/>
+        <result property="orderNumber" column="orderNumber"/>
+    </resultMap>
+</mapper>

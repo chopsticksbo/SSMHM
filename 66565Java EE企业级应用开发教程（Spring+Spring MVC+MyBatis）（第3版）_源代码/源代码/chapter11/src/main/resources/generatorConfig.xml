@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动、URL、用户名、密码等连接信息 -->
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除所有自动生成的注释 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/mybatis"
+                userId="root"
+                password="root">
+        </jdbcConnection>
+
+        <!-- 配置Java类型解析器 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 指定实体类生成规则 -->
+        <javaModelGenerator targetPackage="com.ithema.entity" targetProject="src/main/java">
+            <!--是否让数据表名作为包的子包，将生成的Java实体类放在该子包中-->
+            <property name="enableSubPackages" value="false"/>
+            <!--是否对字符串类型的字段值进行自动去除首尾空白-->
+            <property name="trimStrings" value="true"/>
+
+        </javaModelGenerator>
+        <!-- 指定映射文件生成规则 -->
+        <sqlMapGenerator targetPackage="com.itheima.mapper" targetProject="src/main/resources">
+            <!--是否让数据表名作为文件夹的子文件夹，将生成的映射文件放在该子包中-->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- 指定Java客户端代码的生成规则 -->
+        <!-- type属性的取值：
+        ANNOTATEDMAPPER：会生成使用Mapper接口加上注解的方式创建SQL语句会生成在注解中，不会生成对应的XML文件
+        MIXEDMAPPER：这种配置方式是混合的，会生成Mapper接口，并适当添加合适的注解，但是SQL语句会生成在XML文件中
+        XMLMAPPER：会生成Mapper接口，而接口的方法以及SQL语句都会依赖于XML文件-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.itheima.mapper"
+                             targetProject="src/main/java">
+            <!--是否让数据表名作为文件夹的子文件夹，将生成的XML映射文件放在该子文件夹中-->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- 指定要处理的数据表 -->
+        <table tableName="book" domainObjectName="Book" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <!-- 可在此处添加列的自定义处理，如忽略某个列、修改属性名等 -->
+        </table>
+    </context>
+</generatorConfiguration>

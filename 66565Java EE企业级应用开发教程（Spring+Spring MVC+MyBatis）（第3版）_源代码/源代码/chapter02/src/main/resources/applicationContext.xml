@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--  <bean id="user" class="com.itheima.pojo.User"></bean>-->
+
+    <!--    &lt;!&ndash;构造方法实例化Bean&ndash;&gt;
+    <bean id="user" class="com.itheima.pojo.User">
+            <constructor-arg name="id" value="1"/>
+            <constructor-arg name="name" value="张三"/>
+        </bean>-->
+
+    <!--
+        &lt;!&ndash;静态工厂实例化Bean&ndash;&gt;
+        <bean id="user" class="com.itheima.factory.UserStaticFactory" factory-method="createUser"></bean>
+    -->
+<!--
+    &lt;!&ndash;    实例工厂实例化Bean&ndash;&gt;
+    <bean id="userInstanceFactory"
+          class="com.itheima.factory.UserInstanceFactory"></bean>
+    <bean id="user" factory-bean="userInstanceFactory"
+          factory-method="createUser"></bean>-->
+<!--
+    &lt;!&ndash;setter方法注入&ndash;&gt;
+    <bean id="userDao" class="com.itheima.dao.UserDao"></bean>
+    <bean id="userService" class="com.itheima.service.UserService">
+        <property name="userDao" ref="userDao"></property>
+    </bean>-->
+
+
+    <bean id="userDao" class="com.itheima.dao.UserDao"></bean>
+    <bean id="userService" class="com.itheima.service.UserService">
+        <constructor-arg name="userDao" ref="userDao"></constructor-arg>
+    </bean>
+</beans>
