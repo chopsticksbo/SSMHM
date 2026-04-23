@@ -4,20 +4,60 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itheima.mapper.BookMapper">
 
-    <select id="queryByIdAndName"
-            parameterType="com.itheima.entity.Book"
-            resultType="com.itheima.entity.Book">
-        <!-- 根据id和name查询图书 -->
-        select * from book where 1=1
-        <!-- 如果id不为空，添加id条件 -->
-        <if test="id != null">
-            and id = #{id}
-        </if>
-        <!-- 如果name不为空，添加name条件 -->
-        <if test="name != null and name != ''">
-            and name = #{name}
-        </if>
-    </select>
+        <select id="queryByIdAndName"
+                parameterType="com.itheima.entity.Book"
+                resultType="com.itheima.entity.Book">
+            <!-- 根据id和name查询图书 -->
+            select * from book where 1=1
+            <!-- 如果id不为空，添加id条件 -->
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <!-- 如果name不为空，添加name条件 -->
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+        </select>
+
+<!--    <select id="queryByIdAndName"-->
+<!--            parameterType="com.itheima.entity.Book"-->
+<!--            resultType="com.itheima.entity.Book">-->
+<!--        &lt;!&ndash; 根据id和name查询图书 &ndash;&gt;-->
+<!--        select * from book-->
+<!--        <where>-->
+<!--            &lt;!&ndash; 如果id不为空，添加id条件 &ndash;&gt;-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            &lt;!&ndash; 如果name不为空，添加name条件 &ndash;&gt;-->
+<!--            <if test="name != null and name != ''">-->
+<!--                and name = #{name}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+<!--        <select id="queryByIdAndName"-->
+<!--                parameterType="com.itheima.entity.Book"-->
+<!--                resultType="com.itheima.entity.Book">-->
+<!--            &lt;!&ndash; 根据id和name查询图书 &ndash;&gt;-->
+<!--            select * from book-->
+<!--            <trim prefix="where" prefixOverrides="and">-->
+<!--            &lt;!&ndash; 如果id不为空，添加id条件 &ndash;&gt;-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            &lt;!&ndash; 如果name不为空，添加name条件 &ndash;&gt;-->
+<!--            <if test="name != null and name != ''">-->
+<!--                and name = #{name}-->
+<!--            </if>-->
+<!--            </trim>-->
+<!--        </select>-->
+<!--    ==>  Preparing: select * from book where id = ?-->
+<!--    ==> Parameters: 1(Integer)-->
+<!--    <==    Columns: id, name, price-->
+<!--    <==        Row: 1, java, 100.0-->
+<!--    <==      Total: 1-->
+<!--    Book{id=1, name='java', price=100.0}-->
 
     <select id="findBooksWithSort" parameterType="string" resultType="com.itheima.entity.Book">
         select * from book order by
@@ -42,9 +82,22 @@
 
     <select id="findBooksByIds" resultType="com.itheima.entity.Book">
         select * from book where id in
-                           <foreach item="id" collection="array" open="(" separator="," close=")">
-                               #{id}
-                           </foreach>
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
+
+    <update id="updateBook" parameterType="com.itheima.entity.Book">
+        update book
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 
 </mapper>

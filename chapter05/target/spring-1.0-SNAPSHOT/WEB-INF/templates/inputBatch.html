@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>批量录入学生（复杂绑定）</h3>
+<form th:action="@{/batchBind}" method="post">
+  <!-- 第1个学生 -->
+  学生1-学号：<input type="text" name="studentList[0].id">
+  学生1-姓名：<input type="text" name="studentList[0].name"><br>
+  <!-- 第2个学生 -->
+  学生2-学号：<input type="text" name="studentList[1].id">
+  学生2-姓名：<input type="text" name="studentList[1].name"><br>
+  <input type="submit" value="批量提交">
+</form>
+</body>
+</html>
+
+
+
+
+

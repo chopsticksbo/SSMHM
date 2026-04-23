@@ -38,8 +38,8 @@ public class BookTest {
         BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
         Book b = new Book();
         b.setId(1);
-        b.setName("Java");
-        b.setPrice(100.0);
+//        b.setName("Java");
+//        b.setPrice(100.0);
         Book book = bookMapper.queryByIdAndName(b);
         System.out.println(book);
     }
@@ -83,6 +83,19 @@ public class BookTest {
         for(Book book : books) {
             System.out.println(book);
         }
+        sqlSession.close();
+    }
+
+    @Test
+    public void testUpdateBook() {
+        SqlSession sqlSession = createSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        Book b = new Book();
+        b.setId(2);
+        b.setName("Spring Boot");
+        b.setPrice(100.0);
+        bookMapper.updateBook(b);
+        sqlSession.commit();
         sqlSession.close();
     }
 }
