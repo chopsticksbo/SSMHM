@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c38e63c2-01f0-4e90-a4a8-7bf8f19f422a" name="JDLinuxCloud">
+        <fileTransfer accessType="SFTP" host="36.151.149.163" port="22" sshConfigId="d5730a2c-e6c3-4e27-8b0f-a3d376f242d0" sshConfig="root@36.151.149.163:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" isUseSudo="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

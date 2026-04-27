@@ -1,7 +1,7 @@
 package com.itheima.web;
 
 import com.itheima.service.UserService;
-import com.itheima.service.impl.UserServiceImpl;
+import com.itheima.service.UserServiceImpl;
 
 public class UserAction {
     //    表示层

@@ -18,6 +18,7 @@ public interface StudentMapper {
                             "com.itheima.mapper.CourseMapper.findByStudentId"))
     })
     Student findById(int id);
+
     @Select("SELECT * FROM student WHERE id IN (" +
             "SELECT student_id FROM student_course WHERE course_id = #{courseId})")
     List<Student> findByCourseId(int courseId);

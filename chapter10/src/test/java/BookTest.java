@@ -45,8 +45,8 @@ public class BookTest {
         SqlSession sqlSession = createSqlSession();
         BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
         Book b = new Book();
-        b.setId(7);
-        b.setName("QQ");
+        b.setId(2);
+        b.setName("西游记");
         Book book = bookMapper.queryByIdAndName(b);
         System.out.println(book);
         sqlSession.close();

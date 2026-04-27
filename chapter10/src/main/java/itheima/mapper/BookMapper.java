@@ -6,8 +6,17 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface BookMapper {
+
+
+
     @Select("select * from book where id = #{id} and name = #{name}")
     Book queryByIdAndName(Book book);
+
+
+
+
+
+
     @Select("select * from book order by #{sortType}")
     List<Book> findBooksWithSort(String sortType);
     @Select("select * from book where id in (#{ids})")
